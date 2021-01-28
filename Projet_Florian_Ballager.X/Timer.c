@@ -2,6 +2,9 @@
 #include "timer.h"
 #include "IO.h"
 
+
+extern volatile unsigned char IntFlags=0;
+
 //Initialisation d?un timer 32 bits
 void InitTimer23(void) {
     T3CONbits.TON = 0; // Stop any 16-bit Timer3 operation
@@ -24,6 +27,7 @@ void InitTimer23(void) {
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     LED_ORANGE = !LED_ORANGE;
+    IntFlags |= 1<<1;
 }
 
 //Initialisation d?un timer 16 bits
@@ -47,4 +51,5 @@ void InitTimer1(void){
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void){
     IFS0bits.T1IF = 0;
     LED_BLANCHE = !LED_BLANCHE;
+    IntFlags |= 0x01;
 }
