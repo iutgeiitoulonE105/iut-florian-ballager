@@ -28,6 +28,7 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     LED_ORANGE = !LED_ORANGE;
     IntFlags |= 1<<1;
+    LED_ORANGE = !LED_ORANGE;
 }
 
 //Initialisation d?un timer 16 bits

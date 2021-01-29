@@ -20,15 +20,23 @@ int main (void){
 
     InitPWM();
     
-    InitTimer23();
+    InitTimer1();
+    
+    robotState.taskEnCours = 0;
+    robotState.vitesseDroiteCommandeCourante = 0;
+    robotState.vitesseDroiteConsigne = 0;
+    robotState.vitesseGaucheCommandeCourante = 0;
+    robotState.vitesseGaucheConsigne = 0;
 
-    PWMSetSpeed(-40,-40);
+    robotState.vitesseGaucheConsigne = 100;
     /****************************************************************************************************/
     // Boucle Principale
     /****************************************************************************************************/
     while(1){
-        if(IntFlags & 0x02){
-            PWMSetSpeed(30,30);
+        if(IntFlags & 0x01){
+            IntFlags &= 0xFE;
+            PWMUpdateSpeed();
+            if(abs(robotState.vitesseGaucheCommandeCourante) > abs(robotState.vitesseGaucheConsigne)-2) robotState.vitesseGaucheConsigne *= -1;
         }
     } // fin main
 }
