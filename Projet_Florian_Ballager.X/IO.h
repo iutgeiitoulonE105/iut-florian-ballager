@@ -7,8 +7,8 @@
 #define LED_BLANCHE _LATG6
 
 //Définitions des pins pour les hacheurs moteurs
-#define MOTEUR1_IN1 _LATB14
-#define MOTEUR1_IN2 _LATB15 //Left Motor
+#define MOTEUR1_IN1 _LATB15
+#define MOTEUR1_IN2 _LATB14 //Left Motor
 #define MOTEUR2_IN1 _LATC7
 #define MOTEUR2_IN2 _LATC6 //Right Motor
 
